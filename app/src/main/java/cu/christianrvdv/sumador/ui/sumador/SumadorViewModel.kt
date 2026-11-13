@@ -185,7 +185,7 @@ class SumadorViewModel @Inject constructor(
     private fun getDefaultDenominationsWithType(currency: CurrencySymbol, useCoins: Boolean): List<CustomDenominationEntity> {
         return when (currency) {
             CurrencySymbol.PESO -> {
-                val bills = listOf(100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000)
+                val bills = listOf(100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000)
                 val coins = listOf(1, 2, 5, 20, 50)
                 val all = if (useCoins) bills + coins else bills
                 all.map { value ->
