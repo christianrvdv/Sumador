@@ -23,11 +23,20 @@ android {
 
     signingConfigs {
         create("release") {
-            // Lee las credenciales desde variables de entorno (para GitHub Actions)
-            storeFile = file(System.getenv("KEYSTORE_PATH") ?: "keystore.jks")
-            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
-            keyAlias = System.getenv("KEY_ALIAS") ?: ""
-            keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            // Lee las credenciales desde variables de entorno (para GitHub Actions).
+            // En local, si no hay keystore, el release se genera sin firmar en vez
+            // de romper `build`; si KEYSTORE_PATH está definido pero no existe, falla.
+            val keystorePath = System.getenv("KEYSTORE_PATH")
+            val keystoreFile = file(keystorePath ?: "keystore.jks")
+            if (keystorePath != null && !keystoreFile.exists()) {
+                throw GradleException("KEYSTORE_PATH está definido pero no existe: ${keystoreFile.absolutePath}")
+            }
+            if (keystoreFile.exists()) {
+                storeFile = keystoreFile
+                storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+                keyAlias = System.getenv("KEY_ALIAS") ?: ""
+                keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            }
         }
     }
 
@@ -38,8 +47,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // NUEVA LÍNEA: Usa la configuración de firma release
-            signingConfig = signingConfigs.getByName("release")
+            // Usa la configuración de firma release solo si el keystore existe.
+            signingConfig = signingConfigs.getByName("release").takeIf { it.storeFile != null }
         }
         debug {
             isMinifyEnabled = false
@@ -59,10 +68,10 @@ android {
         compose = true
         buildConfig = true
     }
+}
 
-    ksp {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
