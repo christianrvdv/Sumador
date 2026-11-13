@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sumador — Cuenta billetes y monedas rápido</title>
+  <meta name="description" content="Sumador es una app Android nativa para contar billetes y monedas, calcular totales y arquear caja sin conexión. Descarga el APK oficial desde GitHub Releases.">
+  <meta name="theme-color" content="#faf8ff" id="meta-theme-color">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sumador — Cuenta billetes y monedas rápido">
+  <meta property="og:description" content="App Android nativa para contar billetes y monedas, calcular totales y arquear caja sin conexión. APK oficial desde GitHub Releases.">
+  <meta property="og:url" content="https://christianrvdv.github.io/Sumador/">
+  <meta property="og:image" content="https://christianrvdv.github.io/Sumador/icon.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('sumador-theme');
+        var theme = (saved === 'light' || saved === 'dark')
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+      } catch (error) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+        </span>
+        <span class="brand-name">Sumador</span>
+        <span class="brand-badge">Android APK</span>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#caracteristicas">Características</a>
+        <a href="#capturas">Capturas</a>
+        <a href="#instalacion">Instalación</a>
+        <a href="https://github.com/christianrvdv/Sumador" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"></path>
+          </svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+          </svg>
+        </button>
+
+        <a class="btn btn-primary header-cta js-download" href="https://github.com/christianrvdv/Sumador/releases/latest" aria-label="Descargar APK de Sumador">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
+          </svg>
+          <span>Descargar</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="app-icon-wrap">
+          <div class="app-icon" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+          </div>
+          <span class="kotlin-badge">Kotlin</span>
+        </div>
+
+        <p class="arch-pill">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>Android Nativo (Kotlin)</span>
+        </p>
+
+        <h1 class="hero-title" id="hero-title">Sumador</h1>
+        <h2 class="hero-subtitle">Cuenta billetes y monedas rápido.</h2>
+        <p class="hero-lead">Diseñada para agilizar el arqueo de caja diario, calcular subtotales al instante y evitar errores de conteo de efectivo sin conexión a internet.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-hero js-download" href="https://github.com/christianrvdv/Sumador/releases/latest" aria-label="Descargar APK de Sumador">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
+            </svg>
+            <span>Descargar APK</span>
+            <span class="cta-version js-version-badge" hidden></span>
+          </a>
+
+          <div class="release-card">
+            <div class="meta-grid" aria-live="polite">
+              <div class="meta-item">
+                <span class="meta-label">Versión</span>
+                <span class="meta-value js-version">Cargando…</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tamaño</span>
+                <span class="meta-value js-size">…</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Actualizado</span>
+                <span class="meta-value js-updated">…</span>
+              </div>
+            </div>
+            <div class="meta-status">
+              <div class="status">
+                <span class="status-dot is-loading" id="release-dot" aria-hidden="true"></span>
+                <span class="status-label" id="release-status-label" role="status" aria-live="polite">Consultando GitHub Releases…</span>
+              </div>
+              <span class="official-badge">Oficial</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="caracteristicas" aria-labelledby="features-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Herramientas de precisión</p>
+          <h2 class="section-title section-title--features" id="features-title">Herramientas esenciales para el arqueo de efectivo</h2>
+          <p class="section-sub">Cada detalle pensado para velocidad, precisión y fiabilidad en caja.</p>
+        </header>
+
+        <ul class="features-grid" role="list">
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Múltiples monedas</h3>
+              <p>Soporte para Peso Cubano (CUP), USD y EUR con cambio inmediato entre pestañas.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Billetes y monedas</h3>
+              <p>Campos rápidos para todas las denominaciones en circulación.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Denominaciones personalizadas</h3>
+              <p>Activa o desactiva billetes o monedas según las divisas que manejes.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Historial de sumas</h3>
+              <p>Registro de conteos anteriores con filtros por fecha y divisa.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M8 7H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3m-1 4-3 3m0 0-3-3m3 3V4"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Autoguardado por moneda</h3>
+              <p>No pierdes tu cuenta si sales de la app o bloqueas el teléfono.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Temas visuales</h3>
+              <p>Soporte para Modo Claro, Modo Oscuro y Tema Dinámico de Material You.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M3.055 11H5a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2 2 2 0 0 1 2 2v2.945M8 3.935V5.5A2.5 2.5 0 0 0 10.5 8h.5a2 2 0 0 1 2 2 2 2 0 1 0 4 0 2 2 0 0 1 2-2h1.064M15 20.488V18a2 2 0 0 1 2-2h3.064M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Bilingüe</h3>
+              <p>Interfaz completa disponible en Español e Inglés.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2zm10-10V7a4 4 0 0 0-8 0v4h8z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Copia de seguridad cifrada</h3>
+              <p>Exporta e importa tus datos en formato seguro .sumadorbak.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 1 1 0-2.684m0 2.684 6.632 3.316m-6.632-6 6.632-3.316m0 0a3 3 0 1 0 5.367-2.684 3 3 0 0 0-5.367 2.684zm0 9.316a3 3 0 1 0 5.368 2.684 3 3 0 0 0-5.368-2.684z"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Compartir desglose</h3>
+              <p>Envía el resumen detallado por WhatsApp, Telegram o SMS en un toque.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 0 0 4.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 0 1-15.357-2m15.357 2H15"></path>
+              </svg>
+            </span>
+            <div class="feature-body">
+              <h3>Actualizador interno</h3>
+              <p>Comprueba nuevas versiones y actualiza el APK directamente.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="shots-section" id="capturas" aria-labelledby="shots-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Diseño funcional</p>
+          <h2 class="section-title" id="shots-title">Interfaz pensada para la velocidad</h2>
+          <p class="section-sub">Capturas reales de la app, sin renders ni retoques.</p>
+        </header>
+
+        <div class="shots" role="list" tabindex="0" aria-label="Capturas de pantalla de la aplicación">
+          <figure class="shot" role="listitem">
+            <div class="shot-frame">
+              <img class="shot-img" src="screenshots/01-inicio.webp" srcset="screenshots/01-inicio-360.webp 360w, screenshots/01-inicio-720.webp 720w, screenshots/01-inicio.webp 1080w" sizes="(min-width: 1024px) 265px, (min-width: 640px) 296px, 216px" alt="Pantalla principal de Sumador con denominaciones de CUP, botones de suma y el total en cero." width="1080" height="2340" loading="lazy" decoding="async" onerror="this.closest('.shot').classList.add('shot--error')">
+              <div class="shot-fallback" aria-hidden="true">
+                <div class="phone">
+                  <div class="phone-notch"></div>
+                  <div class="mock-head">
+                    <span class="mock-title">CUP (Pesos)</span>
+                    <span class="mock-meta">Arqueo #142</span>
+                  </div>
+                  <div class="mock-rows">
+                    <div class="mock-row">
+                      <span class="den">$1000</span>
+                      <span class="qty">34</span>
+                      <span class="sub">$34,000</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="den">$500</span>
+                      <span class="qty">21</span>
+                      <span class="sub">$10,500</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="den">$200</span>
+                      <span class="qty">16</span>
+                      <span class="sub">$3,200</span>
+                    </div>
+                    <div class="mock-row">
+                      <span class="den">$100</span>
+                      <span class="qty">9</span>
+                      <span class="sub">$900</span>
+                    </div>
+                    <div class="mock-row is-muted">
+                      <span class="den">$50</span>
+                      <span class="qty">1</span>
+                      <span class="sub">$50</span>
+                    </div>
+                  </div>
+                  <div class="mock-total">
+                    <span>Total caja</span>
+                    <strong>$48,650.00</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <span class="shot-title">Conteo principal</span>
+              <span class="shot-sub">Denominaciones rápidas y subtotal reactivo</span>
+            </figcaption>
+          </figure>
+
+          <figure class="shot" role="listitem">
+            <div class="shot-frame">
+              <img class="shot-img" src="screenshots/02-historial.webp" srcset="screenshots/02-historial-360.webp 360w, screenshots/02-historial-720.webp 720w, screenshots/02-historial.webp 1080w" sizes="(min-width: 1024px) 265px, (min-width: 640px) 296px, 216px" alt="Pantalla de sumas guardadas de Sumador con tres registros y sus montos totales." width="1080" height="2340" loading="lazy" decoding="async" onerror="this.closest('.shot').classList.add('shot--error')">
+              <div class="shot-fallback" aria-hidden="true">
+                <div class="phone">
+                  <div class="phone-notch"></div>
+                  <div class="mock-head">
+                    <span class="mock-title">Historial</span>
+                    <span class="mock-meta">Exportar</span>
+                  </div>
+                  <div class="mock-rows">
+                    <div class="mock-hist">
+                      <div class="mock-hist-top">
+                        <span class="mock-hist-title">Cierre Turno Tarde</span>
+                        <span class="mock-hist-date">Hoy 19:40</span>
+                      </div>
+                      <div class="mock-hist-bottom">
+                        <span>CUP</span>
+                        <span class="mock-hist-amount">$128,450.00</span>
+                      </div>
+                    </div>
+                    <div class="mock-hist">
+                      <div class="mock-hist-top">
+                        <span class="mock-hist-title">Caja Chica USD</span>
+                        <span class="mock-hist-date">Ayer 13:15</span>
+                      </div>
+                      <div class="mock-hist-bottom">
+                        <span>USD</span>
+                        <span class="mock-hist-amount">$1,420.00</span>
+                      </div>
+                    </div>
+                    <div class="mock-hist">
+                      <div class="mock-hist-top">
+                        <span class="mock-hist-title">Arqueo Matutino</span>
+                        <span class="mock-hist-date">12 Oct 09:00</span>
+                      </div>
+                      <div class="mock-hist-bottom">
+                        <span>EUR</span>
+                        <span class="mock-hist-amount">€650.00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mock-foot">8 arqueos registrados</div>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <span class="shot-title">Sumas guardadas</span>
+              <span class="shot-sub">Historial con búsqueda y montos totales</span>
+            </figcaption>
+          </figure>
+
+          <figure class="shot" role="listitem">
+            <div class="shot-frame">
+              <img class="shot-img" src="screenshots/03-ajustes.webp" srcset="screenshots/03-ajustes-360.webp 360w, screenshots/03-ajustes-720.webp 720w, screenshots/03-ajustes.webp 1080w" sizes="(min-width: 1024px) 265px, (min-width: 640px) 296px, 216px" alt="Pantalla de configuraciones de Sumador con tema, símbolo de moneda, denominaciones, idioma y orden de billetes." width="1080" height="2340" loading="lazy" decoding="async" onerror="this.closest('.shot').classList.add('shot--error')">
+              <div class="shot-fallback" aria-hidden="true">
+                <div class="phone">
+                  <div class="phone-notch"></div>
+                  <div class="mock-head">
+                    <span class="mock-title">Ajustes CUP</span>
+                    <span class="mock-meta">Restablecer</span>
+                  </div>
+                  <div class="mock-rows">
+                    <div class="mock-toggle-row">
+                      <span class="den">$1000 CUP</span>
+                      <span class="mock-toggle is-on"></span>
+                    </div>
+                    <div class="mock-toggle-row">
+                      <span class="den">$500 CUP</span>
+                      <span class="mock-toggle is-on"></span>
+                    </div>
+                    <div class="mock-toggle-row">
+                      <span class="den">$20 CUP</span>
+                      <span class="mock-toggle is-on"></span>
+                    </div>
+                    <div class="mock-toggle-row is-muted">
+                      <span class="den">$10 Moneda</span>
+                      <span class="mock-toggle"></span>
+                    </div>
+                    <div class="mock-toggle-row is-muted">
+                      <span class="den">$5 Moneda</span>
+                      <span class="mock-toggle"></span>
+                    </div>
+                  </div>
+                  <div class="mock-save">Guardar configuración</div>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <span class="shot-title">Configuraciones</span>
+              <span class="shot-sub">Tema, moneda, idioma y orden de billetes</span>
+            </figcaption>
+          </figure>
+
+          <figure class="shot" role="listitem">
+            <div class="shot-frame">
+              <img class="shot-img" src="screenshots/04-ajustes.webp" srcset="screenshots/04-ajustes-360.webp 360w, screenshots/04-ajustes-720.webp 720w, screenshots/04-ajustes.webp 1080w" sizes="(min-width: 1024px) 265px, (min-width: 640px) 296px, 216px" alt="Pantalla de opciones de Sumador con guardado automático, backup cifrado y búsqueda de actualizaciones." width="1080" height="2340" loading="lazy" decoding="async" onerror="this.closest('.shot').classList.add('shot--error')">
+              <div class="shot-fallback" aria-hidden="true">
+                <div class="phone phone--dark">
+                  <div class="phone-notch"></div>
+                  <div class="mock-dark">
+                    <span class="mock-dark-icon">
+                      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2 1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="mock-dark-title">Captura adicional</span>
+                    <span class="mock-dark-pill">Modo Oscuro</span>
+                    <span class="mock-dark-text">Carga adaptable y tema nocturno</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <span class="shot-title">Opciones y respaldo</span>
+              <span class="shot-sub">Guardado automático y backup cifrado</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="install" id="instalacion" aria-labelledby="install-title">
+      <div class="container install-inner">
+        <div class="install-head">
+          <div>
+            <h2 class="section-title" id="install-title">Instalación manual simple y segura</h2>
+            <p class="section-sub">Despliegue directo sin intermediarios ni recopilación de telemetría.</p>
+          </div>
+          <p class="req-pill">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="m5 13 4 4L19 7"></path>
+            </svg>
+            <span>Requisito: Android 7.0 o superior (API 24)</span>
+          </p>
+        </div>
+
+        <div class="install-note">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 11v5m0-8h.01"></path>
+          </svg>
+          <p><strong>Nota sobre Android:</strong> al instalar un APK fuera de Google Play, el sistema pedirá activar el permiso temporal de <em>«Instalar aplicaciones desconocidas»</em> para tu navegador o explorador de archivos. Es el procedimiento habitual y seguro de Android.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span class="step-num" aria-hidden="true">1</span>
+            <div class="step-body">
+              <strong>Descarga el .apk</strong>
+              <span>Usa el enlace directo oficial.</span>
+            </div>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">2</span>
+            <div class="step-body">
+              <strong>Abre el archivo</strong>
+              <span>Toca la notificación completada.</span>
+            </div>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">3</span>
+            <div class="step-body">
+              <strong>Pulsa Instalar</strong>
+              <span>Confirma la acción. ¡Listo para contar efectivo!</span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="install-foot">
+          <a class="btn btn-primary btn-install js-download" href="https://github.com/christianrvdv/Sumador/releases/latest" aria-label="Descargar APK de Sumador">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
+            </svg>
+            <span>Descargar APK de Sumador</span>
+          </a>
+          <p class="file-meta">
+            <span class="file-name js-asset-name">app-release.apk</span>
+            <span class="file-hash js-asset-hash">SHA256: —</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="Enlaces del proyecto">
+        <a href="https://github.com/christianrvdv/Sumador" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"></path>
+          </svg>
+          <span>Repositorio en GitHub</span>
+        </a>
+        <span class="footer-dot" aria-hidden="true">•</span>
+        <a href="https://github.com/christianrvdv/Sumador/releases" target="_blank" rel="noopener noreferrer">Historial de versiones y lanzamientos (Releases)</a>
+        <span class="footer-dot" aria-hidden="true">•</span>
+        <a href="https://github.com/christianrvdv/Sumador/releases/latest" target="_blank" rel="noopener noreferrer">Notas de la última versión (Changelog)</a>
+      </nav>
+      <p class="footer-note">El APK se distribuye a través de GitHub Releases.</p>
+        <p class="footer-copy">© <span id="year">2026</span> Sumador. Herramienta utilitaria para conteo de efectivo.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
