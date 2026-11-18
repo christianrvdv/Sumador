@@ -1,9 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+
+    <!-- Brazo horizontal del signo + -->
     <path
-        android:fillColor="#006A5E"
-        android:pathData="M54,30c-3.31,0 -6,2.69 -6,6v12H36c-3.31,0 -6,2.69 -6,6s2.69,6 6,6h12v12c0,3.31 2.69,6 6,6s6,-2.69 6,-6V60h12c3.31,0 6,-2.69 6,-6s-2.69,-6 -6,-6H60V36c0,-3.31 -2.69,-6 -6,-6z"/>
+        android:fillColor="#FF0F172A"
+        android:pathData="M30,46.8 H38.4 A5.4,5.4 0 0,1 43.8,52.2 V52.2 A5.4,5.4 0 0,1 38.4,57.6 H30 A5.4,5.4 0 0,1 24.6,52.2 V52.2 A5.4,5.4 0 0,1 30,46.8 Z" />
+
+    <!-- Eje vertical del signo + -->
+    <path
+        android:fillColor="#FF0F172A"
+        android:pathData="M40.2,32.4 H40.2 A5.4,5.4 0 0,1 45.6,37.8 V70.2 A5.4,5.4 0 0,1 40.2,75.6 H40.2 A5.4,5.4 0 0,1 34.8,70.2 V37.8 A5.4,5.4 0 0,1 40.2,32.4 Z" />
+
+    <!-- Barra verde esmeralda -->
+    <path
+        android:fillColor="#FF10B981"
+        android:pathData="M54.6,42 H54.6 A4.8,4.8 0 0,1 59.4,46.8 V70.8 A4.8,4.8 0 0,1 54.6,75.6 H54.6 A4.8,4.8 0 0,1 49.8,70.8 V46.8 A4.8,4.8 0 0,1 54.6,42 Z" />
+
+    <!-- Barra azul cian -->
+    <path
+        android:fillColor="#FF0EA5E9"
+        android:pathData="M67.8,51.6 H67.8 A4.2,4.2 0 0,1 72,55.8 V71.4 A4.2,4.2 0 0,1 67.8,75.6 H67.8 A4.2,4.2 0 0,1 63.6,71.4 V55.8 A4.2,4.2 0 0,1 67.8,51.6 Z" />
+
+    <!-- Barra gris slate -->
+    <path
+        android:fillColor="#FF94A3B8"
+        android:pathData="M79.8,60 H79.8 A3.6,3.6 0 0,1 83.4,63.6 V72 A3.6,3.6 0 0,1 79.8,75.6 H79.8 A3.6,3.6 0 0,1 76.2,72 V63.6 A3.6,3.6 0 0,1 79.8,60 Z" />
+
 </vector>

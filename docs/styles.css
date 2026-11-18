@@ -284,18 +284,27 @@ section[id] {
 .brand-mark {
   width: 36px;
   height: 36px;
-  border-radius: 10px;
-  background: var(--primary);
-  color: var(--on-primary);
   display: grid;
   place-items: center;
   flex: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
 }
 
-.brand-mark .icon {
-  width: 19px;
-  height: 19px;
+.brand-logo {
+  display: block;
+  width: 32px;
+  height: auto;
+}
+
+.brand-logo--dark {
+  display: none;
+}
+
+[data-theme="dark"] .brand-logo--light {
+  display: none;
+}
+
+[data-theme="dark"] .brand-logo--dark {
+  display: block;
 }
 
 .brand-name {
@@ -457,16 +466,27 @@ section[id] {
   width: 80px;
   height: 80px;
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--brand-700), #14b8a6);
-  color: #ffffff;
   display: grid;
   place-items: center;
   box-shadow: 0 0 0 4px var(--app-icon-ring), 0 14px 30px -16px rgba(0, 104, 95, 0.65);
 }
 
-.app-icon .icon {
-  width: 36px;
-  height: 36px;
+.app-icon-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.app-icon-logo--dark {
+  display: none;
+}
+
+[data-theme="dark"] .app-icon-logo--light {
+  display: none;
+}
+
+[data-theme="dark"] .app-icon-logo--dark {
+  display: block;
 }
 
 .kotlin-badge {
@@ -1514,11 +1534,6 @@ section[id] {
     border-radius: 24px;
   }
 
-  .app-icon .icon {
-    width: 44px;
-    height: 44px;
-  }
-
   .hero-title {
     font-size: 36px;
     line-height: 40px;
@@ -1565,11 +1580,6 @@ section[id] {
     width: 112px;
     height: 112px;
     border-radius: 28px;
-  }
-
-  .app-icon .icon {
-    width: 52px;
-    height: 52px;
   }
 
   .hero-title {

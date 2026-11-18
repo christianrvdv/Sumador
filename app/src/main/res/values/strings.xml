@@ -236,4 +236,16 @@
     <string name="export_error_open">Could not create the backup file</string>
     <string name="export_error_permission">No permission to save the file</string>
     <string name="import_error_version">Unsupported backup version</string>
+
+    <!-- Info / About screen -->
+    <string name="info_back">Back</string>
+    <string name="info_official_page_title">Official website</string>
+    <string name="info_official_page_support">News, download and information about the app.</string>
+    <string name="info_open_page_button">Open official website</string>
+    <string name="info_share_button">Share app</string>
+    <string name="info_share_chooser_title">Share Sumador</string>
+    <string name="info_share_subject">Download Sumador</string>
+    <string name="info_share_text">Sumador helps you count bills and coins quickly and easily. Download it here: %1$s</string>
+    <string name="info_no_browser">No browser was found to open the page.</string>
+    <string name="info_no_share_apps">No apps are available to share.</string>
 </resources>

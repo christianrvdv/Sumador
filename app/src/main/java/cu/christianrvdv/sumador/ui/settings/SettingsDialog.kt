@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -270,14 +271,23 @@ fun SettingsBottomSheet(
 
             // Botón About
             TextButton(
-                onClick = onAboutClick,
-                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    onDismiss()
+                    onAboutClick()
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 48.dp)
+                    .testTag("settings_about_item"),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.textButtonColors(
                     contentColor = MaterialTheme.colorScheme.primary
                 )
             ) {
-                Icon(Icons.Default.Info, contentDescription = null)
+                Icon(
+                    Icons.Default.Info,
+                    contentDescription = stringResource(R.string.content_description_about)
+                )
                 Spacer(Modifier.width(8.dp))
                 Text(stringResource(R.string.settings_about_button))
             }

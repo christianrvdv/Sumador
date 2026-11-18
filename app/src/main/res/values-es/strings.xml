@@ -236,4 +236,16 @@
     <string name="export_error_open">No se pudo crear el archivo de backup</string>
     <string name="export_error_permission">Sin permisos para guardar el archivo</string>
     <string name="import_error_version">Versión de backup no soportada</string>
+
+    <!-- Pantalla de información -->
+    <string name="info_back">Volver</string>
+    <string name="info_official_page_title">Página oficial</string>
+    <string name="info_official_page_support">Novedades, descarga e información sobre la app.</string>
+    <string name="info_open_page_button">Abrir página oficial</string>
+    <string name="info_share_button">Compartir aplicación</string>
+    <string name="info_share_chooser_title">Compartir Sumador</string>
+    <string name="info_share_subject">Descarga Sumador</string>
+    <string name="info_share_text">Sumador te ayuda a contar billetes y monedas de forma rápida y sencilla. Descárgala aquí: %1$s</string>
+    <string name="info_no_browser">No se encontró un navegador para abrir la página.</string>
+    <string name="info_no_share_apps">No hay aplicaciones disponibles para compartir.</string>
     </resources>

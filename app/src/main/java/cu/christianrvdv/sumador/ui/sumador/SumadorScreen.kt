@@ -2,9 +2,11 @@
 package cu.christianrvdv.sumador.ui.sumador
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -26,7 +28,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -51,6 +55,7 @@ fun SumadorScreen(
     viewModel: SumadorViewModel = hiltViewModel(),
     settingsViewModel: SettingsViewModel,
     onNavigateToHistory: () -> Unit,
+    onNavigateToAbout: () -> Unit,
     onCheckForUpdates: () -> Unit,
     onNavigateToManageDenominations: () -> Unit
 ) {
@@ -62,7 +67,6 @@ fun SumadorScreen(
 
     var showSettingsDialog by remember { mutableStateOf(false) }
     var showResetDialog by remember { mutableStateOf(false) }
-    var showAboutDialog by remember { mutableStateOf(false) }
     var showSaveDialog by remember { mutableStateOf(false) }
     var saveName by remember { mutableStateOf("") }
 
@@ -190,8 +194,13 @@ fun SumadorScreen(
             TopAppBar(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+                        val appBarLogo = if (MaterialTheme.colorScheme.primary.luminance() < 0.5f) {
+                            R.drawable.ic_logo_app_bar_dark
+                        } else {
+                            R.drawable.ic_logo_app_bar_light
+                        }
                         Icon(
-                            Icons.Default.Calculate,
+                            painter = painterResource(appBarLogo),
                             contentDescription = null,
                             modifier = Modifier.size(28.dp)
                         )
@@ -210,7 +219,7 @@ fun SumadorScreen(
                             contentDescription = stringResource(R.string.history_title)
                         )
                     }
-                    IconButton(onClick = { showAboutDialog = true }) {
+                    IconButton(onClick = onNavigateToAbout) {
                         Icon(
                             Icons.Default.Info,
                             contentDescription = stringResource(R.string.content_description_about)
@@ -705,10 +714,7 @@ fun SumadorScreen(
                     settingsViewModel.updateUseCoins(enabled)
                 }
             },
-            onAboutClick = {
-                showSettingsDialog = false
-                showAboutDialog = true
-            },
+            onAboutClick = onNavigateToAbout,
             onCheckForUpdates = onCheckForUpdates,
             onManageDenominations = onNavigateToManageDenominations,
             // onBackupRequest eliminado
@@ -732,10 +738,6 @@ fun SumadorScreen(
                 importLauncher.launch(intent)
             }
         )
-    }
-
-    if (showAboutDialog) {
-        AboutBottomSheet(onDismiss = { showAboutDialog = false })
     }
 
     // ---- Diálogo de confirmación de importación (MEJORADO) ----
@@ -966,5 +968,9 @@ fun shareCurrentSum(
         type = "text/plain"
         putExtra(Intent.EXTRA_TEXT, shareText)
     }
-    context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_sum)))
+    try {
+        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_sum)))
+    } catch (_: ActivityNotFoundException) {
+        Toast.makeText(context, R.string.info_no_share_apps, Toast.LENGTH_SHORT).show()
+    }
 }

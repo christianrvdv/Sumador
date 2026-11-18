@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -46,6 +47,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import cu.christianrvdv.sumador.ui.components.UpdateDialogs
 import cu.christianrvdv.sumador.ui.history.SavedSumsScreen
+import cu.christianrvdv.sumador.ui.info.AndroidAppIntents
+import cu.christianrvdv.sumador.ui.info.InfoScreen
 import cu.christianrvdv.sumador.ui.manage_denominations.ManageDenominationsScreen
 import cu.christianrvdv.sumador.ui.settings.LanguageOption
 import cu.christianrvdv.sumador.ui.settings.SettingsViewModel
@@ -53,6 +56,7 @@ import cu.christianrvdv.sumador.ui.settings.ThemeOption
 import cu.christianrvdv.sumador.ui.sumador.SumadorScreen
 import cu.christianrvdv.sumador.ui.theme.SumadorTheme
 import cu.christianrvdv.sumador.ui.update.UpdateViewModel
+import cu.christianrvdv.sumador.utils.AppLinks
 import cu.christianrvdv.sumador.utils.UpdateManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -116,6 +120,7 @@ class MainActivity : ComponentActivity() {
             }
 
             val navController = rememberNavController()
+            val appIntents = remember(context) { AndroidAppIntents(context) }
 
             // Verificar actualizaciones al inicio (solo una vez)
             LaunchedEffect(Unit) {
@@ -136,6 +141,7 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 settingsViewModel = settingsViewModel,
                                 onNavigateToHistory = { navController.navigate("history") },
+                                onNavigateToAbout = { navController.navigate("about") },
                                 onCheckForUpdates = {
                                     lifecycleScope.launch {
                                         updateViewModel.checkForUpdatesManually()
@@ -150,6 +156,34 @@ class MainActivity : ComponentActivity() {
                         composable("history") {
                             SavedSumsScreen(
                                 onBack = { navController.popBackStack() }
+                            )
+                        }
+                        composable("about") {
+                            InfoScreen(
+                                onBack = { navController.popBackStack() },
+                                onOpenOfficialPage = {
+                                    if (!appIntents.openUrl(AppLinks.DOWNLOAD_URL)) {
+                                        Toast.makeText(
+                                            context,
+                                            R.string.info_no_browser,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                },
+                                onShareApp = {
+                                    val subject = context.getString(R.string.info_share_subject)
+                                    val text = context.getString(
+                                        R.string.info_share_text,
+                                        AppLinks.DOWNLOAD_URL
+                                    )
+                                    if (!appIntents.share(subject, text)) {
+                                        Toast.makeText(
+                                            context,
+                                            R.string.info_no_share_apps,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
                             )
                         }
                         composable(
