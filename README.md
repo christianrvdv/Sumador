@@ -1,6 +1,6 @@
 # Sumador – Cuenta billetes y monedas rápidamente
 
-[![Versión](https://img.shields.io/badge/version-1.8.3-blue.svg)](https://github.com/Christianrvdv/Sumador/releases/tag/v1.8.3)
+[![Versión](https://img.shields.io/badge/version-1.8.4-blue.svg)](https://github.com/Christianrvdv/Sumador/releases/tag/v1.8.4)
 [![Licencia: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Android](https://img.shields.io/badge/Android-7.0%2B-brightgreen)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-purple)](https://kotlinlang.org)
@@ -9,7 +9,7 @@
 **Sumador** es una aplicación para Android sencilla e intuitiva para contar billetes y monedas.
 Está diseñada para comerciantes, cajeros y cualquier persona que maneje efectivo, ayudándote a llevar el control de los totales de forma rápida y precisa.
 
-> ✨ **Última actualización (v1.8.3):** nuevas denominaciones de **10 000 y 20 000 pesos**, además de la **copia de seguridad y restauración manual** completa (cifrada), filtros avanzados en el historial, denominaciones personalizadas por moneda y soporte mejorado para monedas.
+> ✨ **Última actualización (v1.8.4):** nuevo **icono de la app** y pantalla **«Acerca de»** con enlace a la página oficial y opción de compartir. Además: denominaciones de **10 000 y 20 000 pesos**, copia de seguridad y restauración manual completa (cifrada), filtros avanzados en el historial, denominaciones personalizadas por moneda y soporte mejorado para monedas.
 
 ---
 

@@ -25,7 +25,7 @@ JDK 17 required (Gradle 8.14, AGP 8.13.2, Kotlin 2.0.21, KSP 2.0.21-1.0.25). Roo
 
 ## Versioning and releases
 
-- `app/build.gradle.kts` is the source of truth: currently `versionCode = 5`, `versionName = "1.8.3"`. README is in sync; update both when bumping.
+- `app/build.gradle.kts` is the source of truth: currently `versionCode = 6`, `versionName = "1.8.4"`. README is in sync; update both when bumping.
 - `.github/workflows/release.yml` runs only on `v*` tags (no branch/PR CI), builds `assembleRelease`, and uploads `app/build/outputs/apk/release/app-release.apk`. Tag must be `v<versionName>`.
 - The in-app updater compares the GitHub latest-release tag (`v` stripped) with `versionName`, so tag and `versionName` must match and the release must carry an `.apk` asset.
 - CI decodes `KEYSTORE_BASE64` into `app/keystore.jks`; never commit keystores (`*.jks` is gitignored).
